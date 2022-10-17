@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const { emailRegex } = require('../utils/helpers');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -14,7 +15,8 @@ const userSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/, 'Please fill a valid email address']
+      match: [emailRegex, 'Please fill a valid email address']
+      // match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/, 'Please fill a valid email address']
     },
     thoughts: [
       {
