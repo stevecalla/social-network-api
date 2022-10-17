@@ -5,7 +5,7 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       // .populate('friends', 'email')
-      // .populate('thoughts', 'thoughtsText')
+      .populate('thoughts')
       .then((users) => res.json(users))
       .catch((err) => {
         console.log({error: err})
