@@ -29,8 +29,22 @@ const thoughtSchema = new Schema(
       getters: true,
     },
     id: false,
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
   }
 );
+
+// Create a virtual property for the count of reactions
+thoughtSchema
+  .virtual('reactionCount')
+  // Getter
+  .get(function () {
+    return this.reactions.length;
+  });
 
 // Initialize our User model
 const Thought = model('thought', thoughtSchema);

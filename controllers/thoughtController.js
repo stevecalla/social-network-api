@@ -29,7 +29,7 @@ module.exports = {
     console.log(req.body.userName)
     Thought.create(req.body)
       .then((thought) => {
-        return User.findOneAndUpdate(
+        return User.findOneAndUpdate (
           // { _id: req.body.userId },
           { userName: req.body.userName },
           { $addToSet: { thoughts: thought._id } },
