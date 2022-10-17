@@ -14,20 +14,22 @@ connection.once('open', async () => {
   const thoughtsData = [];
   const applications = getRandomApplications(10);
 
-  //create thought seeds
+  // create userNames seeds
   let userNames = [];
-  // let randomReactionData = [];
-  // for (let i = 0; i < 5; i++) {
-  //   randomReactionData.push(getRandomReaction());
-  // }
 
   for (let i = 0; i < 5; i++) {
-    const userName = getRandomUserName().toLowerCase();
+    let userName = getRandomUserName().toLowerCase();
+    userNames.push(userName);
+  }
+
+  //create thought seeds
+
+  for (let i = 0; i < 5; i++) {
     const thoughtsText = getRandomThought();
+    let userName = userNames[i]
     const reactions = [{ 
-      // reactionId: ,
       reactionBody: getRandomReaction(), 
-      userName: userName,
+      userName: userNames[ 4 - i ],
     }];
     
     thoughtsData.push({
@@ -36,7 +38,6 @@ connection.once('open', async () => {
       ,reactions
     })
     
-    userNames.push(userName);
   }
 
   // reactionBody, userName
@@ -67,7 +68,7 @@ connection.once('open', async () => {
   await User.deleteMany({})
   .then(() => {
     for (let j = 0; j < 5; j++) {
-      let friends = users[4-j]._id;
+      let friends = users[ 4 - j ]._id;
   
       users[j].friends.push(friends);
     }
