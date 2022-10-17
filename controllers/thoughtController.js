@@ -67,4 +67,79 @@ module.exports = {
       .then(() => res.json({ message: 'thought deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+  // Add a Reaction
+  addReaction(req, res) {
+    // console.log(req.params, req.params.thoughtId)
+    Thought.findOne({ _id: req.params.thoughtId })
+    .select('-__v')
+    .then((result) => {
+      // check to ensure reaction doesn't exist already
+      let body = result.reactions.map(element => element.reactionBody);
+      let user = result.reactions.map(element => element.userName);
+      let isUpdatable = true;
+      if (body.includes(req.body.reactionBody) && user.includes(req.body.userName)) {
+        isUpdatable = false;
+      }
+      console.log('1 isUpdatable = ', isUpdatable);
+      return isUpdatable;
+    })
+    .then((isUpdatable) => {
+      console.log('2 = updatable = ', isUpdatable);
+      if (isUpdatable) {
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $addToSet: { reactions: req.body } },
+          { returnOriginal: false },
+          (err, result) => {
+            if (result) {
+              res.status(200).json(result);
+              console.log(`Updated: ${result}`);
+            } else {
+              console.log("Uh Oh, something went wrong");
+              res.status(500).json({ message: "something went wrong" });
+            }
+          }
+        );
+      }
+      else {
+        res.status(200).json({ message: 'Thought already exists' })
+      }
+    })
+  },
+  // Delete a reaction
+  deleteReaction(req, res) {
+    console.log(req.params.thoughtId, req.body.reactionId)
+    // Thought.findOneAndDelete(
+    //   { _id: req.params.thoughtId },
+
+    // Thought.findOne({ _id: req.params.thoughtId })
+    // .select('-__v')
+    // .then((result) => {
+    //   console.log(result)
+    //   // let test = result.reactions.map(element => element.reactionId);
+    //   let test = result.reactions.map(element => element.reactionId.valueOf());
+    //   console.log(test);
+    //   // let test3 = `ObjectId("634dceac5b49554359133173")`
+    //   let position = test.indexOf(req.body.reactionId);
+    //   let test2 = test.includes(req.body.reactionId);
+    //   console.log(test2, position)
+    //   res.status(200).json({ message: 'No thought with that ID' })
+    // })
+
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.body.reactionId} } },
+      { returnOriginal: false },
+      (err, result) => {
+        console.log('result = ', result.reactions, result.reactions.reactionId)
+        if (result) {
+          res.status(200).json(result);
+          console.log(`Updated: ${result}`);
+        } else {
+          console.log("Uh Oh, something went wrong");
+          res.status(500).json({ message: "something went wrong" });
+        }
+      }
+    );
+  },
 };
