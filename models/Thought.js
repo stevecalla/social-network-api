@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const { formatDate } = require('../utils/helpers');
+const reactionsSchema = require('./Reactions');
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -9,19 +10,19 @@ const thoughtSchema = new Schema(
       required: true,
       min: 1,
       max: 280,
-  },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: formatDate
-  },
-    userName: {
-      type: String,
-      required: true,
-      trim: true,
-      maxlength: 30
-  }
-    // reactions: 
+    },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+        get: formatDate
+    },
+      userName: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 30
+    },
+    reactions: [reactionsSchema]
   },
   {
     toJSON: {
