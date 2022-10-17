@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought, Application } = require('../models');
-const { getRandomUserName, getRandomThought, getRandomApplications } = require('./data');
+const { getRandomUserName, getRandomThought, getRandomReaction, getRandomApplications } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -16,18 +16,30 @@ connection.once('open', async () => {
 
   //create thought seeds
   let userNames = [];
+  // let randomReactionData = [];
+  // for (let i = 0; i < 5; i++) {
+  //   randomReactionData.push(getRandomReaction());
+  // }
 
   for (let i = 0; i < 5; i++) {
     const userName = getRandomUserName().toLowerCase();
     const thoughtsText = getRandomThought();
+    const reactions = [{ 
+      // reactionId: ,
+      reactionBody: getRandomReaction(), 
+      userName: userName,
+    }];
     
     thoughtsData.push({
-      thoughtsText,
-      userName,
+      thoughtsText
+      ,userName
+      ,reactions
     })
     
     userNames.push(userName);
   }
+
+  // reactionBody, userName
 
   await Thought.collection.insertMany(thoughtsData);
 

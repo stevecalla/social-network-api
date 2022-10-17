@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const { formatDate } = require('../utils/helpers');
 
 // Schema to create Thought model
