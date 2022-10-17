@@ -32,18 +32,10 @@ const thoughtSchema = new Schema(
 );
 
 function format_date(date) {
-  let dateFormatted = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate()
-  );
+  
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short'};
 
-  // options.timeZone = 'UTC';
-  // options.timeZoneName = 'short';
-
-  return new Intl.DateTimeFormat('en-US', options).format(date)
-  // return date.toLocaleDateString('en-US', options);
+  return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
 // Initialize our User model
