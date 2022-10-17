@@ -18,12 +18,6 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new thought
-  // createThought(req, res) {
-  //   Thought.create(req.body)
-  //     .then((thought) => res.json(thought))
-  //     .catch((err) => res.status(500).json(err));
-  // },
   createThought(req, res) {
     console.log(req.body)
     console.log(req.body.userName)
@@ -48,15 +42,29 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // Delete a thought and associated apps
+  // Update a thought
+  updateThought(req, res) {
+    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, req.body, { returnOriginal: false }, (err, result) => {
+      if (result) {
+        res.status(200).json(result);
+        console.log(`Updated: ${result}`);
+      } else {
+        console.log('Uh Oh, something went wrong');
+        res.status(500).json({ message: 'something went wrong' });
+      }
+    })
+  },
+  // Delete a thought and remove from user document
   deleteThought(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtId })
-      .then((thought) =>
-        !thought
-          ? res.status(404).json({ message: 'No thought with that ID' })
-          : Application.deleteMany({ _id: { $in: thought.applications } })
-      )
-      .then(() => res.json({ message: 'thought and associated apps deleted!' }))
+      .then((thought) => {
+        console.log(thought)
+        return User.findOneAndUpdate (
+          { userName: thought.userName },
+          { $pull: { thoughts: thought._id } }
+        );
+      })
+      .then(() => res.json({ message: 'thought deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
 };
