@@ -19,8 +19,6 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   createThought(req, res) {
-    console.log(req.body)
-    console.log(req.body.userName)
     Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate (
@@ -69,7 +67,6 @@ module.exports = {
   },
   // Add a Reaction
   addReaction(req, res) {
-    // console.log(req.params, req.params.thoughtId, req.body)
     Thought.findOne({ _id: req.params.thoughtId })
     .select('-__v')
     .then((result) => {
@@ -80,11 +77,9 @@ module.exports = {
       if (body.includes(req.body.reactionBody) && user.includes(req.body.userName)) {
         isUpdatable = false;
       }
-      console.log('1 isUpdatable = ', isUpdatable);
       return isUpdatable;
     })
     .then((isUpdatable) => {
-      console.log('2 = updatable = ', isUpdatable);
       if (isUpdatable) {
         Thought.findOneAndUpdate(
           { _id: req.params.thoughtId },
@@ -108,13 +103,11 @@ module.exports = {
   },
   // Delete a reaction
   deleteReaction(req, res) {
-    console.log(req.params.thoughtId, req.body.reactionId)
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.body.reactionId } } },
       { returnOriginal: false },
       (err, result) => {
-        console.log('result = ', result.reactions, result.reactions.reactionId)
         if (result) {
           res.status(200).json(result);
           console.log(`Updated: ${result}`);
