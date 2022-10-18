@@ -6,7 +6,7 @@ module.exports = {
     User.find()
       .select("-__v")
       .populate('friends')
-      // .populate("thoughts")
+      .populate("thoughts")
       .then((users) => res.json(users))
       .catch((err) => {
         console.log({ error: err });
