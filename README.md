@@ -14,7 +14,11 @@
 ## Description
 
 ```
-This app is a social network API using Express (server), Mongo (database) and Mongoose that allows users to share their thoughts, react to friends’ thoughts, and create a friend list.
+This app is a social network API that allows users to share their thoughts, react to friends’ thoughts, and create a friend list. This app uses the following technology:
+
+* Express - server
+* Mongo - "local" database 
+* Mongoose 
 ```
 
 ## Acceptance Criteria
@@ -45,27 +49,167 @@ Seed the Database:
 
 ## Usage
 
-This app is a deployed solely on the back-end using Node.js, Mongo, Mongoose and Insomia (for the routes).
+This app is a deployed solely on the back-end using Node.js, Express, Mongo, Mongoose and Insomia (for the API route testing).
 
 ## Features
 
-This app includes features that allows the user to view, add, update and delete blog posts as well as add comments to posts. It includes a variety of features such as login, logout, signup, add comments, add blog posts, edit blog posts and delete blog posts as well as varies views..
+This app includes a variety of API routes (see list below). In addition, the following features exist.
 
-1. Model/Database: mysql2, sequalize, , mockaroo.com (for mock seed data)
-2. View: handlebars, express-handlebars, Javascript, HTML, CSS, FontAwesome
-3. Controller/Router: express
-4. Helpers: bcrypt, dotenv
-5. Sessions/Cookies: connect-sessions-sequalize
-6. Deployed Site: Heroku
-7. Project Management/Repo: Github
+1. Email validation using "match" schema function
+2. "Virtual" friends and reactions count
+3. "Getter" method to format the time stamp using the native JavaScript `Date` object to format timestamps (`new Intl.DateTimeFormat('en-US', options).format(date)`). See `utils/helpers.js`
+4. Sub/nest-document for the "reactionsSchema"
+5. Self-reference join for the friends list/array
+6. "Populate" (join) for the thoughts and friends list/array
+7. "addReactions" controller ensures a reaction doesn't exist prior to insertion
+8. **BONUS** "createThought" controller adds the thought._id to the user's associated thoughts array
+9. **BONUS** "deleteThought" controller deletes the thought._id from the user's associated thoughts array
+10. **BONUS** Robust seed code for all data
 
-<!-- ## Future Enhancements
+## API Routes
 
-This app can be enhanced by (a) using/adding dates such as created at, updated at, deleted at to track information by time, (b) add soft and hard delete options so users can recover changes if necessary, (c) add the ability to manage middle names, (d) add more fields for employees or roles such as employee salary, date of birth, social security number (secured in some manner), email address, position start date and more, (e) add ka secure password for the mysql database connection, and (f) add additional testing. -->
-<!-- 
-1. TBD
-2. TBD
-3. TBD
+**`/api/users`** 
+
+<details>
+
+* All users 
+  <br>- **METHOD** `GET` **PATH** `/api/users`
+
+* A single user by `_id` with populated thought & friend data
+  <br>- **METHOD** `GET` **PATH** `/api/users/634df22d4104c107dd4f42c8`
+  <br>- Replace `id` params with current data
+
+* Create new user
+  <br>- **METHOD** `POST` **PATH** `/api/users`
+  <br>- Optionally include `thoughts` or `friends` array of ids
+
+    ```json
+    // example data
+    {
+      "userName": "lernantino",
+      "email": "lernantino@gmail.com"
+    }
+    ```
+
+* Update a user by `_id`
+  <br>- **METHOD** `PUT` **PATH** `/api/users/634d47030d72bb9ffea4d595`
+  <br>- Update for `userName`, `email`, `thoughts` array and/or `friends`
+
+    ```json
+    // example data
+    {
+      "userName": "lernantino_update2",
+      "email": "lernantino_update2@gmail.com",
+      "thoughts": ["634cedfd82f6f5b211c2115e"]
+    }
+    ```
+* Remove/delete user by `_id`
+  <br>- **METHOD** `DELETE` **PATH** `/api/users/634d47030d72bb9ffea4d595`
+  <br>- Also deletes user's associated thoughts
+
+</details>
+
+---
+
+**`/api/users/:userId/friends/:friendId`**
+
+<details>
+
+* Add a new friend to a user's friend list
+  <br>- **METHOD** `POST` **PATH** `/api/users/634e1b87461a6c76046df4e9/friend/634e1b87461a6c76046df4ea`
+  <br>- Replace `id` params with current data
+
+* Remove/delete a friend from a user's friend list
+  <br>- **METHOD** `DELETE` **PATH** `/api/users/634e1b87461a6c76046df4e9/friend/634e1b87461a6c76046df4ea`
+
+</details>
+
+---
+
+**`/api/thoughts`**
+
+<details>
+
+* All Thougths
+  <br>- **METHOD** `GET` **PATH** `/api/thoughts`
+
+* `GET` to get a single thought by `_id`
+* A single though by `_id`
+  <br>- **METHOD** `GET` **PATH** `/api/thoughts/634d70298fa00f9e18a5a973`
+  <br>- Replace `id` params with current data
+
+* Create new thought
+  <br>- **METHOD** `POST` **PATH** `/api/thoughts`
+  <br>- Also push ($addToSet) the thought `_id' to the related user `thoughts` array
+  <br>- Optionally add `reactions`
+
+```json
+// example data
+{
+  "userName": "abdirahmanaaryan",
+  "thoughtsText": "post post post post",
+  "reactions": [
+    {
+      "reactionBody": "reaction reaction reaction",
+      "userName": "abdulkaremabdulbasir"
+    }
+  ]
+}
+```
+
+* Update a thought by `_id`
+  <br>- **METHOD** `PUT` **PATH** `/api/thoughts/634d70298fa00f9e18a5a973`
+  <br>- Update for `thoughtsText`, `userName`, and/or `reactions` array
+  <br>- Also push ($addToSet) the thought `_id' to the related user `thoughts` array
+
+    ```json
+    // example data
+    {
+      "thoughtsText": "thought_6001",
+      "userName": "zohaibabdihakim",
+      "reactions": [],
+    }
+    ```
+* Remove/delete thought by `_id`
+  <br>- **METHOD** `DELETE` **PATH** `/api/thoughts/634d70298fa00f9e18a5a973`
+  <br>- Deletes associated sub-document reactions
+  <br>- Also remove ($pull) the thought `_id' from the related user `thoughts` array
+
+</details>
+
+---
+
+**`/api/thoughts/:thoughtId/reactions`**
+
+<details>
+
+* Add a reaction to a single thought's `reactions` array field
+  <br>- **METHOD** `POST` **PATH** `localhost:3001/api/thoughts/634ec10b755357bb3b64b3c9/reactions`
+
+    ```json
+    // example data
+    {
+      "reactionBody": "new_reaction_100",
+      "userName": "abdallahaaryn"
+    }
+    ```
+
+* `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
+
+* Pull/remove a reaction by the reaction's `reactionId` value
+  <br>- **METHOD** `DELETE` **PATH** `/api/thoughts/634e2eabb70caaf8fbb382c5/reactions`
+
+    ```json
+    // example data
+    {
+      "reactionId": "634e2eabb70caaf8fbb382bb"
+    }
+    ```
+
+</details>
+
+---
+
 -->
 
 ## App Preview - Static Screenshots
@@ -92,18 +236,11 @@ Contributor Covenant Code of Conduct
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md)
 
-<!-- DELETE THIS SECTION FOR THE FINAL README. For more information on example contribution guidelines please see the links below.
-
-1. Contributor Convent: [Information](https://www.contributor-covenant.org/)
-2. Contributor Covenant Code of Conduct: [Markdown File](hhttps://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md)
--->
-
 ## Resources
 
 1. Project Manager: [Steve Calla - GitHub Profile](https://github.com/stevecalla)
-2. Deployed Site URL - Heroku: <https://techie-blog-301.herokuapp.com/>
-3. GitHub Repo: <https://github.com/stevecalla/tech-blog>
-4. GitHub Projects: https://github.com/users/stevecalla/projects/20
+2. Deployed Site URL - Heroku: Not applicable.
+3. GitHub Repo: <https://github.com/stevecalla/social-network-api>
 4. Contact: [Email Steve](mailto:callasteven@gmail.com)
 
 ## License 

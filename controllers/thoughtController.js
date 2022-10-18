@@ -102,7 +102,7 @@ module.exports = {
         );
       }
       else {
-        res.status(200).json({ message: 'Thought already exists' })
+        res.status(200).json({ message: 'Reaction already exists' })
       }
     })
   },
