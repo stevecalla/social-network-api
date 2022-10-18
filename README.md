@@ -14,7 +14,21 @@
 ## Description
 
 ```
-This app is a deployed blog site that allows uers to publish blog posts as well as login, logout, signup, add comments, add blog posts, edit blog posts and delete blog posts.
+This app is a social network API using Express (server), Mongo (database) and Mongoose that allows users to share their thoughts, react to friends’ thoughts, and create a friend list.
+```
+
+## Acceptance Criteria
+
+```
+GIVEN a social network API
+WHEN I enter the command to invoke the application
+THEN my server is started and the Mongoose models are synced to the MongoDB database
+WHEN I open API GET routes in Insomnia for users and thoughts
+THEN the data for each of these routes is displayed in a formatted JSON
+WHEN I test API POST, PUT, and DELETE routes in Insomnia
+THEN I am able to successfully create, update, and delete users and thoughts in my database
+WHEN I test API POST and DELETE routes in Insomnia
+THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 
 ## Installation
@@ -22,27 +36,16 @@ This app is a deployed blog site that allows uers to publish blog posts as well 
 Setup: 
 - (1) Fork the repo, (2) Clone the forked repo locally, (3) Run "npm install" (to install the dependencies).
 
-Setup the Database Schema: 
-- (1) Update or add an .env file. Include the fields below in the .env file. Note that the .env variables are used in the conf folder, connection.js file.
-
-  * DB_NAME="blog_db"
-  * DB_USER="<mySQL user name>"
-  * DB_PASSWORD="<mySQL user password>"
+Setup the Database Schema / Run Server: 
+- Note that Mongo needs to be used for the database. The config file is setup to run on "mongodb://localhost/socialNetwork".
+- Run Server: From the root directory, run either "npm start" or if nodemon is available "nodemon" to start nodeman or "node index.js".
 
 Seed the Database: 
-- Run Server: From the root directory, run either "npm run watch" to start nodeman or "node server.js".
-- Seed Database: (a) To create the database, run "SOURCE ./db/schema.sql" in mySQL, (b) To create the database tables, from the terminal, run "npm run start" or "npm run watch", (c) To seed the database tables, run "npm run seed" or "node ./seeds/index.js".
-
-Note that the seed will also create entries for the user table including hashed passwords. When loggin into the app these user seeds can be used as test email address. Either obtain an email address from the user table (SELECT * FROM user;) or use an option noted below:
-
-  * email: egerok3@ifeng.com, password: "password1234"
-  * email: cmcglynn8@vimeo.com, password: "password1234"
-
-If you'd like to use NPM nodemon as/if you make changes to the code, please install nodemon as a development dependency using "npm install --save-dev nodemon" (see https://www.npmjs.com/package//nodemon). 
+- Run "npm run seed" from the root directory. This should create a Mongo "socialNetwork" db.
 
 ## Usage
 
-This app is a deployed blog site that allows uers to publish blog posts.
+This app is a deployed solely on the back-end using Node.js, Mongo, Mongoose and Insomia (for the routes).
 
 ## Features
 
