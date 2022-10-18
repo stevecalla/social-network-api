@@ -1,7 +1,7 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, Types } = require('mongoose');
 const { formatDate } = require('../utils/helpers');
 
-// Schema to create Thought model
+// create reaction schema
 const reactionsSchema = new Schema(
   {
     reactionId: {
@@ -33,8 +33,5 @@ const reactionsSchema = new Schema(
     id: false,
   }
 );
-
-// Initialize our User model
-// const Reactions = model('reactions', reactionsSchema);
 
 module.exports = reactionsSchema;
