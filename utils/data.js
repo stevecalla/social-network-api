@@ -93,45 +93,6 @@ const reactionData = [
   "reaction_10",
 ]
 
-const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
-];
-
-const possibleTags = [
-  'html',
-  'css',
-  'javascript',
-  'typescript',
-  'go',
-  'cpp',
-  'python',
-  'rust',
-  'React',
-  'React Native',
-  'NextJS',
-  'Tailwind',
-  'Vue',
-  'mongodb',
-  'sql',
-];
-
 const users = [];
 
 // Get a random item given an array
@@ -149,39 +110,9 @@ const getRandomThought = () =>
 const getRandomReaction = () =>
 `${getRandomArrItem(reactionData)}`; 
 
-// Function to generate random applications that we can add to the database. Includes application tags.
-const getRandomApplications = (int) => {
-  let results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      published: Math.random() < 0.5,
-      description: getRandomArrItem(appDescriptions),
-      buildSuccess: Math.random() < 0.5,
-      tags: [...getApplicationTags(3)],
-    });
-  }
-  return results;
-};
-
-// Create the tags that will be added to each application
-const getApplicationTags = (int) => {
-  if (int === 1) {
-    return getRandomArrItem(possibleTags);
-  }
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      tagBody: getRandomArrItem(possibleTags),
-      username: getRandomUserName(),
-    });
-  }
-  return results;
-};
-
 // Export the functions for use in seed.js
 module.exports = { 
   getRandomUserName, 
   getRandomThought, 
-  getRandomReaction, 
-  getRandomApplications 
+  getRandomReaction
 };

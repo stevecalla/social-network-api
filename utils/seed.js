@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
-const { User, Thought, Application } = require('../models');
-const { getRandomUserName, getRandomThought, getRandomReaction, getRandomApplications } = require('./data');
+const { User, Thought } = require('../models');
+const { getRandomUserName, getRandomThought, getRandomReaction } = require('./data');
 const { Types } = require('mongoose');
 
 connection.on('error', (err) => err);
@@ -9,11 +9,9 @@ connection.once('open', async () => {
   console.log('connected');
   await User.deleteMany({});
   await Thought.deleteMany({});
-  await Application.deleteMany({});
 
   const users = [];
   const thoughtsData = [];
-  const applications = getRandomApplications(10);
 
   // create userNames seeds
   let userNames = [];
@@ -47,8 +45,6 @@ connection.once('open', async () => {
     
   }
 
-  // reactionBody, userName
-
   await Thought.collection.insertMany(thoughtsData);
 
   // create user seeds
@@ -67,9 +63,6 @@ connection.once('open', async () => {
     });
   }
 
-  // await Application.collection.insertMany(applications);
-  // console.log(users, thoughts)
-
   await User.collection.insertMany(users)
   console.log('1 = --------', users)
 
@@ -84,12 +77,8 @@ connection.once('open', async () => {
   console.log('2 = --------', users)
   await User.collection.insertMany(users)
 
-
-  // loop through the saved applications, for each application we need to generate a application response and insert the application responses
   console.table(thoughtsData);
   console.table(users);
-
-  // console.table(applications);
   console.info('Seeding complete! 🌱');
   process.exit(0);
 });

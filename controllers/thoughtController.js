@@ -1,4 +1,4 @@
-const { User, Thought, Application } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all thoughts
@@ -126,37 +126,3 @@ module.exports = {
     );
   },
 };
-
-// {
-//   "_id": "634dd8e032ce0fe01ce92884",
-//   "thoughtsText": "thought_4",
-//   "userName": "aaryanjones",
-//   "reactions": [
-//     {
-//       "_id": "634ddaab50f35fbe26a29bc0",
-//       "reactionBody": "reaction_10",
-//       "userName": "zurielaarron",
-//       "reactionId": "634ddaab50f35fbe26a29bc1",
-//       "createdAt": "Monday, October 17, 2022, 04:43 PM MDT"
-//     }
-//   ],
-//   "createdAt": "Monday, October 17, 2022, 04:43 PM MDT",
-//   "reactionCount": 1
-// },
-
-    // Thought.findOneAndDelete(
-    //   { _id: req.params.thoughtId },
-
-    // Thought.findOne({ _id: req.params.thoughtId })
-    // .select('-__v')
-    // .then((result) => {
-    //   console.log(result)
-    //   // let test = result.reactions.map(element => element.reactionId);
-    //   let test = result.reactions.map(element => element.reactionId.valueOf());
-    //   console.log(test);
-    //   // let test3 = `ObjectId("634dceac5b49554359133173")`
-    //   let position = test.indexOf(req.body.reactionId);
-    //   let test2 = test.includes(req.body.reactionId);
-    //   console.log(test2, position)
-    //   res.status(200).json({ message: 'No thought with that ID' })
-    // })
