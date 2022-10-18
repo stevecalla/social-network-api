@@ -1,12 +1,16 @@
-const connection = require('../config/connection');
-const { User, Thought } = require('../models');
-const { getRandomUserName, getRandomThought, getRandomReaction } = require('./data');
-const { Types } = require('mongoose');
+const connection = require("../config/connection");
+const { User, Thought } = require("../models");
+const {
+  getRandomUserName,
+  getRandomThought,
+  getRandomReaction,
+} = require("./data");
+const { Types } = require("mongoose");
 
-connection.on('error', (err) => err);
+connection.on("error", (err) => err);
 
-connection.once('open', async () => {
-  console.log('connected');
+connection.once("open", async () => {
+  console.log("connected");
   await User.deleteMany({});
   await Thought.deleteMany({});
 
@@ -28,21 +32,22 @@ connection.once('open', async () => {
     const thoughtsText = getRandomThought();
     let userName = userNames[i];
     // let createdAt = Date.now();
-    const reactions = [{ 
-      reactionBody: getRandomReaction(), 
-      userName: userNames[ 4 - i ],
-      _id: new Types.ObjectId(),
-      reactionId: new Types.ObjectId(),
-      createdAt: createdAt,
-    }];
-    
+    const reactions = [
+      {
+        reactionBody: getRandomReaction(),
+        userName: userNames[4 - i],
+        _id: new Types.ObjectId(),
+        reactionId: new Types.ObjectId(),
+        createdAt: createdAt,
+      },
+    ];
+
     thoughtsData.push({
-      thoughtsText
-      ,userName
-      ,createdAt
-      ,reactions
-    })
-    
+      thoughtsText,
+      userName,
+      createdAt,
+      reactions,
+    });
   }
 
   await Thought.collection.insertMany(thoughtsData);
@@ -56,30 +61,29 @@ connection.once('open', async () => {
     let friends = [];
 
     users.push({
-      userName
-      ,email
-      ,thoughts
-      ,friends
-      ,createdAt
+      userName,
+      email,
+      thoughts,
+      friends,
+      createdAt,
     });
   }
 
-  await User.collection.insertMany(users)
-  console.log('1 = --------', users)
+  await User.collection.insertMany(users);
+  console.log("1 = --------", users);
 
-  await User.deleteMany({})
-  .then(() => {
+  await User.deleteMany({}).then(() => {
     for (let j = 0; j < 5; j++) {
-      let friends = users[ 4 - j ]._id;
-  
+      let friends = users[4 - j]._id;
+
       users[j].friends.push(friends);
     }
-  })
-  console.log('2 = --------', users)
-  await User.collection.insertMany(users)
+  });
+  console.log("2 = --------", users);
+  await User.collection.insertMany(users);
 
   console.table(thoughtsData);
   console.table(users);
-  console.info('Seeding complete! 🌱');
+  console.info("Seeding complete! 🌱");
   process.exit(0);
 });
