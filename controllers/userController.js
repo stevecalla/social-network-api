@@ -6,6 +6,7 @@ module.exports = {
     User.find()
       .select("-__v")
       .populate('friends')
+      // .populate({ path: 'friends', select: 'userName email friends' })
       .populate("thoughts")
       .then((users) => res.json(users))
       .catch((err) => {
