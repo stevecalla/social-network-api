@@ -11,7 +11,8 @@ function formatDate(date) {
   return new Intl.DateTimeFormat("en-US", options).format(date);
 }
 
-emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
+emailRegex = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,10})$/;
+// emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
 
 module.exports = {
   formatDate,
