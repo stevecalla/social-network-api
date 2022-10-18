@@ -69,7 +69,7 @@ module.exports = {
   },
   // Add a Reaction
   addReaction(req, res) {
-    // console.log(req.params, req.params.thoughtId)
+    // console.log(req.params, req.params.thoughtId, req.body)
     Thought.findOne({ _id: req.params.thoughtId })
     .select('-__v')
     .then((result) => {
@@ -111,7 +111,7 @@ module.exports = {
     console.log(req.params.thoughtId, req.body.reactionId)
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { reactions: { reactionId: req.body.reactionId} } },
+      { $pull: { reactions: { reactionId: req.body.reactionId } } },
       { returnOriginal: false },
       (err, result) => {
         console.log('result = ', result.reactions, result.reactions.reactionId)
