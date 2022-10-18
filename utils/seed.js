@@ -22,12 +22,12 @@ connection.once('open', async () => {
   }
 
   //create thought seeds
+  let createdAt = new Date();
 
   for (let i = 0; i < 5; i++) {
     const thoughtsText = getRandomThought();
     let userName = userNames[i];
     // let createdAt = Date.now();
-    let createdAt = new Date();
     const reactions = [{ 
       reactionBody: getRandomReaction(), 
       userName: userNames[ 4 - i ],
@@ -60,6 +60,7 @@ connection.once('open', async () => {
       ,email
       ,thoughts
       ,friends
+      ,createdAt
     });
   }
 

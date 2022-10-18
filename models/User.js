@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const { emailRegex } = require('../utils/helpers');
+const { formatDate } = require('../utils/helpers');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -29,6 +30,17 @@ const userSchema = new Schema(
         ref: 'user',
       }
     ],
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: formatDate
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
   },
   {
     toJSON: {

@@ -11,16 +11,16 @@ const thoughtSchema = new Schema(
       min: 1,
       max: 280,
     },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: formatDate
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: formatDate
     },
-      userName: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 30
+    userName: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 30
     },
     reactions: [reactionsSchema]
   },
