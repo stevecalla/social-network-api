@@ -50,13 +50,13 @@ connection.once('open', async () => {
     let userName = userNames[j];
     let thoughts = [thoughtsData[j]._id];
     // let friends = [userNames[4-j]];
-    let friends = [];
+    // let friends = [];
 
     users.push({
       userName
       ,email
       ,thoughts
-      ,friends
+      // ,friends
     });
   }
 
@@ -65,16 +65,17 @@ connection.once('open', async () => {
 
   await User.collection.insertMany(users)
   console.log('1 = --------', users)
-  await User.deleteMany({})
-  .then(() => {
-    for (let j = 0; j < 5; j++) {
-      let friends = users[ 4 - j ]._id;
+
+  // await User.deleteMany({})
+  // .then(() => {
+  //   for (let j = 0; j < 5; j++) {
+  //     let friends = users[ 4 - j ]._id;
   
-      users[j].friends.push(friends);
-    }
-  })
-  console.log('2 = --------', users)
-  await User.collection.insertMany(users)
+  //     users[j].friends.push(friends);
+  //   }
+  // })
+  // console.log('2 = --------', users)
+  // await User.collection.insertMany(users)
 
 
   // loop through the saved applications, for each application we need to generate a application response and insert the application responses
