@@ -212,19 +212,31 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 -->
 
-## App Preview - Static Screenshots
-
-<img alt="Map" src="public/images/screenshot-homePage.png">
-
 ## App Preview - WalkThrough Videos
 
-[Link to Setup Video](https://youtu.be/GVZ9KZithiY)
+Video #1: Shows - the dotenv, sequelize sync, model associations, models, mysql database connection, source schema, seed model, start server and the code.
 
-This video shows - the category routes including get all categories, get single category by id, post (add a new category), put (update a category by id), delete a category by id.
+[Link to Setup Video](https://www.youtube.com/watch?v=zZlf6Svef_c)
 
-![In Insomnia, the user tests “GET tags,” “GET Categories,” and “GET All Products.”.](public/images/tech-blog-video.gif)
+![In Insomnia... TBD.](./assets/images/api-video-v1.gif)
 
-<!-- <img src="public/images/powder-bound.gif" width="" height=""/> -->
+Video #2: Shows - the category routes including get all categories, get single category by id, post (add a new category), put (update a category by id), delete a category by id.
+
+[Link to Category Video](https://www.youtube.com/watch?v=slAFeFB_kok)
+
+![In Insomnia... TBD.](./assets/images/category-routes.gif)
+
+Video #3: Shows the product routes including get all products, get single product by id, post (add a new product), put (update a product by id), delete a product by id.
+
+[Link to Product Video](https://www.youtube.com/watch?v=ink0QcryLE8)
+
+![In Insomnia... TBD.](./assets/images/product-routes.gif)
+
+Video #4: Shows the category routes including get all tags, get single tag by id, post (add a new tag), put (update a tag by id), delete a tag by id.
+
+[Link to Tag Video](https://www.youtube.com/watch?v=e1VP_5mltbc)
+
+![In Insomnia... TBD.](./assets/images/tag-routes.gif)
 
 ## Tests
 
