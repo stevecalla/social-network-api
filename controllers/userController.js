@@ -14,8 +14,8 @@ module.exports = {
   // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-      .populate("friends")
-      // .populate({ path: 'friends', select: 'userName email friends' })
+      // .populate("friends")
+      .populate('friends')
       .populate("thoughts")
       .then((user) =>
         !user
