@@ -40,8 +40,8 @@ Video #5: Demonstrates all `Reactions` routes including create/POST a reaction a
 
 - Youtube Link: https://youtu.be/qBMw2xhaNkU
 
-#### TEAM SUBMISSION
-Hello - I'm happy to provide my submission for Project #2 hiKamps. See the links below, please.
+#### SUBMISSION
+Hello - I'm happy to provide my submission for Project #18 Social Network API. See the links below, please. All videos below are less than 2 minutes.
 
 - [ ] GitHub Repo: https://github.com/stevecalla/social-network-api
 - [ ] Video #1: Start/Sync & Tech Criteria https://youtu.be/HNc61D-j4nI
@@ -52,7 +52,7 @@ Hello - I'm happy to provide my submission for Project #2 hiKamps. See the links
 
 To start/sync the server please use "npm start", "node index.js" or "nodemon" (if you have it installed globally). 
 
-A seed is avaiable by running "npm run seed".
+A seed is available by running "npm run seed".
 
 The readme includes a thorough review of all API routes and features. The features include:
 
@@ -62,7 +62,7 @@ The readme includes a thorough review of all API routes and features. The featur
 4. Sub/nest-document for the "reactionsSchema"
 5. Self-reference join for the friends list/array
 6. "Populate" (join) for the thoughts and friends list/array
-7. "addReactions" controller ensures a reaction doesn't exist prior to insertion
+7. **BONUS** "addReactions" controller ensures a reaction doesn't exist prior to insertion
 8. **BONUS** "createThought" controller adds the thought._id to the user's associated thoughts array
 9. **BONUS** "deleteThought" controller deletes the thought._id from the user's associated thoughts array
 10. **BONUS** Robust seed code for all data
