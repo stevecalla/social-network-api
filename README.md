@@ -68,7 +68,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 ## API Routes
 
-**`/api/users`** 
+### User Routes **`/api/users`** 
 
 <details>
 
@@ -110,7 +110,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 ---
 
-**`/api/users/:userId/friends/:friendId`**
+### Friend Routes **`/api/users/:userId/friends/:friendId`**
 
 <details>
 
@@ -125,7 +125,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 ---
 
-**`/api/thoughts`**
+### Thought Routes **`/api/thoughts`**
 
 <details>
 
@@ -178,7 +178,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 ---
 
-**`/api/thoughts/:thoughtId/reactions`**
+### Reaction Routes **`/api/thoughts/:thoughtId/reactions`**
 
 <details>
 
