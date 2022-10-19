@@ -70,7 +70,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 **`/api/users`** 
 
-<!-- <details> -->
+<details>
 
 * All users 
   <br>- **METHOD** `GET` **PATH** `/api/users`
@@ -106,13 +106,13 @@ This app includes a variety of API routes (see list below). In addition, the fol
   <br>- **METHOD** `DELETE` **PATH** `/api/users/634d47030d72bb9ffea4d595`
   <br>- Also deletes user's associated thoughts
 
-<!-- </details> -->
+</details>
 
 ---
 
 **`/api/users/:userId/friends/:friendId`**
 
-<!-- <details> -->
+<details>
 
 * Add a new friend to a user's friend list
   <br>- **METHOD** `POST` **PATH** `/api/users/634e1b87461a6c76046df4e9/friend/634e1b87461a6c76046df4ea`
@@ -121,13 +121,13 @@ This app includes a variety of API routes (see list below). In addition, the fol
 * Remove/delete a friend from a user's friend list
   <br>- **METHOD** `DELETE` **PATH** `/api/users/634e1b87461a6c76046df4e9/friend/634e1b87461a6c76046df4ea`
 
-<!-- </details> -->
+</details>
 
 ---
 
 **`/api/thoughts`**
 
-<!-- <details> -->
+<details>
 
 * All Thougths
   <br>- **METHOD** `GET` **PATH** `/api/thoughts`
@@ -174,13 +174,13 @@ This app includes a variety of API routes (see list below). In addition, the fol
   <br>- Deletes associated sub-document reactions
   <br>- Also remove ($pull) the thought `_id' from the related user `thoughts` array
 
-<!-- </details> -->
+</details>
 
 ---
 
 **`/api/thoughts/:thoughtId/reactions`**
 
-<!-- <details> -->
+<details>
 
 * Add a reaction to a single thought's `reactions` array field
   <br>- **METHOD** `POST` **PATH** `localhost:3001/api/thoughts/634ec10b755357bb3b64b3c9/reactions`
@@ -205,7 +205,7 @@ This app includes a variety of API routes (see list below). In addition, the fol
     }
     ```
 
-<!-- </details> -->
+</details>
 
 ---
 
@@ -214,31 +214,31 @@ This app includes a variety of API routes (see list below). In addition, the fol
 
 Video #1: Demonstrates how to start the application’s server and all of the technical acceptance criteria. This includes syncing with Mongo via Mongoose at server startup, seeding, models and schema as required, date formatting and more.
 
-[Link to Setup Video](https://youtu.be/HNc61D-j4nI)
+[Link to Start/Sync/Tech Criteria](https://youtu.be/HNc61D-j4nI)
 
 ![In Insomnia... TBD.](assets/1_video_start_tech_req.gif)
 
 Video #2: Demonstrates all `User` routes including GET all, GET user by id, POST new user, PUT user update, and DELETE USER (and associated thoughts).
 
-[Link to Category Video](https://youtu.be/rqdCeiGhVAI)
+[Link to User Routes](https://youtu.be/rqdCeiGhVAI)
 
 ![In Insomnia... TBD.](assets/2_video_users_routes.gif)
 
 Video #3: Demonstrates all `Friends` routes including create/POST a friend and DELETE a friend.
 
-[Link to Product Video](https://youtu.be/rPL0nG73ECg)
+[Link to Friend Routes](https://youtu.be/rPL0nG73ECg)
 
 ![In Insomnia... TBD.](assets/3_video_friends_routes.gif)
 
 Video #4: Demonstrates all `Thoughts` routes including GET all, GET thought by id, POST new thought (and adds thought to related user thoughts array), PUT thought update, and DELETE thought (and remove thought from related user thoughts array).
 
-[Link to Tag Video](https://youtu.be/5udd7YO4f24)
+[Link to Thought Routes](https://youtu.be/5udd7YO4f24)
 
 ![In Insomnia... TBD.](assets/4_video_thoughts_routes.gif)
 
 Video #5: Demonstrates all `Reactions` routes including create/POST a reaction and DELETE a reaction.
 
-[Link to Tag Video](https://youtu.be/qBMw2xhaNkU)
+[Link to Reactions Routes](https://youtu.be/qBMw2xhaNkU)
 
 ![In Insomnia... TBD.](assets/5_video_reactions_routes.gif)
 

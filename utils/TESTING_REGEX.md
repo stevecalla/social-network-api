@@ -39,3 +39,32 @@ Video #5: Demonstrates all `Reactions` routes including create/POST a reaction a
 - Google Link: https://drive.google.com/file/d/1-gJW0kyBjILedQMK0nkD4FzCy4U0q4Ec/view
 
 - Youtube Link: https://youtu.be/qBMw2xhaNkU
+
+#### TEAM SUBMISSION
+Hello - I'm happy to provide my submission for Project #2 hiKamps. See the links below, please.
+
+- [ ] GitHub Repo: https://github.com/stevecalla/social-network-api
+- [ ] Video #1: Start/Sync & Tech Criteria https://youtu.be/HNc61D-j4nI
+- [ ] Video #2: User Routes https://youtu.be/rqdCeiGhVAI
+- [ ] Video #3: Friend Routes https://youtu.be/rPL0nG73ECg
+- [ ] Video #4: Thought Routes https://youtu.be/5udd7YO4f24
+- [ ] Video #5: Reaction Routes https://youtu.be/qBMw2xhaNkU
+
+To start/sync the server please use "npm start", "node index.js" or "nodemon" (if you have it installed globally). 
+
+A seed is avaiable by running "npm run seed".
+
+The readme includes a thorough review of all API routes and features. The features include:
+
+1. Email validation using "match" schema function
+2. "Virtual" friends and reactions count
+3. "Getter" method to format the time stamp using the native JavaScript `Date` object to format timestamps (`new Intl.DateTimeFormat('en-US', options).format(date)`). See `utils/helpers.js`
+4. Sub/nest-document for the "reactionsSchema"
+5. Self-reference join for the friends list/array
+6. "Populate" (join) for the thoughts and friends list/array
+7. "addReactions" controller ensures a reaction doesn't exist prior to insertion
+8. **BONUS** "createThought" controller adds the thought._id to the user's associated thoughts array
+9. **BONUS** "deleteThought" controller deletes the thought._id from the user's associated thoughts array
+10. **BONUS** Robust seed code for all data
+
+Thank you, Steve
