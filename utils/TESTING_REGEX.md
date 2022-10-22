@@ -68,3 +68,10 @@ The readme includes a thorough review of all API routes and features. The featur
 10. **BONUS** Robust seed code for all data
 
 Thank you, Steve
+
+## FEEDBACK
+```
+Amazing work on your Social Network API. I can see that you have an extremely detailed README, which includes screenshots, a hefty description, your video link, etc. I love your extremely descriptive README! I would recommend mending the videos (using a video editing software) together instead of submitting numerous videos. 
+
+I can see that you have your videos showcasing the various endpoints including from users to reactions! However, I would advise to add some commentary into your walkthrough to provide some of your thoughts. With that being said, amazing work! - KN
+```
